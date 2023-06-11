@@ -52,7 +52,7 @@ app.get('/song/:sname', (req, res) => {
 	})
 })
 
-app.post('/song', (req, res) => {
+app.post('/insert', (req, res) => {
     const sql = 'INSERT into song (sname, composer, lvl1, lvl2, lvl3, lvl4, lvl4name) values (?, ?, ?, ?, ?, ?, ?)'
     const song = [
       req.body.sname,
@@ -71,6 +71,18 @@ app.post('/song', (req, res) => {
       }
       res.json({result: "success"})
     })
+})
+
+app.post('/delete', (req, res) => {
+  const sql = 'delete from song where sname = ?'
+
+  db.query(sql, req.body.sname, (err, rows) => {
+    if (err) {
+      res.json({result: "error"})
+      return console.log(err)
+    }
+    res.json({result: "success"})
+  })
 })
 
 app.listen(port, () => {
