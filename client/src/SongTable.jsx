@@ -22,13 +22,11 @@ const EXPRESS_URL = 'http://175.120.221.48:3010'
 
 function SongTable() {
   const [values, setValues] = useState({song_name: ""})
-
   const searchBoxHandleChange = (event) => {
     const {name, value} = event.target
     setValues({...values, [name]: value})
     console.log(values)
   }
-
   const searchBoxKeyDown = (event) => {
     if (event.key === "Enter") {
       search()
@@ -43,17 +41,16 @@ function SongTable() {
     const res = await axios.get(EXPRESS_URL + `/search?sname=${values.song_name}`)
     setItems(res.data)
   }
-
-  const [items, setItems] = useState([])
-  useEffect(() => {
-    refresh()
-  }, [])
-
   async function refresh() {
     const res = await axios.get(EXPRESS_URL + '/song')
     console.log(res.data)
     setItems(res.data)
   }
+
+  const [items, setItems] = useState([])
+  useEffect(() => {
+    refresh()
+  }, [])
 
   return (
     <>

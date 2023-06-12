@@ -28,16 +28,13 @@ export function InsertDialog() {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const HandleCloseOK = () => {
     insertSong()
     setOpen(false);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target
     setValues({...values, [name]: value})
@@ -150,16 +147,13 @@ export function ModifyDialog() {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const HandleCloseOK = () => {
     modifySong()
     setOpen(false);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target
     setValues({...values, [name]: value})
@@ -278,16 +272,13 @@ export function DeleteDialog() {
     const handleClickOpen = () => {
       setOpen(true);
     };
-    
     const HandleCloseOK = () => {
         deleteSong()
         setOpen(false);
     };
-
     const handleClose = () => {
       setOpen(false);
     };
-
     const handleChange = (event) => {
         const { name, value } = event.target
         setValues({...values, [name]: value})
