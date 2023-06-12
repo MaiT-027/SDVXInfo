@@ -15,6 +15,7 @@ const EXPRESS_URL = 'http://175.120.221.48:3010'
 export function InsertDialog() {
   const [open, setOpen] = useState(false);
   const [values, setValues] = useState({sname: "", composer: "", lvl1: "", lvl2: "", lvl3: "", lvl4: "", lvl4name: ""})
+
   async function insertSong() {
     if (values.lvl4 === "") {
         values.lvl4 = null
@@ -28,7 +29,7 @@ export function InsertDialog() {
     setOpen(true);
   };
 
-  const handleCloseOK = () => {
+  const HandleCloseOK = () => {
     insertSong()
     setOpen(false);
   };
@@ -126,7 +127,7 @@ export function InsertDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>취소</Button>
-          <Button onClick={handleCloseOK}>추가</Button>
+          <Button onClick={HandleCloseOK}>추가</Button>
         </DialogActions>
       </Dialog>
     </div>
@@ -146,7 +147,7 @@ export function DeleteDialog() {
       setOpen(true);
     };
     
-    const handleCloseOK = () => {
+    const HandleCloseOK = () => {
         deleteSong()
         setOpen(false);
     };
@@ -184,7 +185,7 @@ export function DeleteDialog() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>취소</Button>
-            <Button onClick={handleCloseOK}>삭제</Button>
+            <Button onClick={HandleCloseOK}>삭제</Button>
           </DialogActions>
         </Dialog>
       </div>

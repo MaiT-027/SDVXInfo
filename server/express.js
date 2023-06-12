@@ -85,6 +85,18 @@ app.post('/delete', (req, res) => {
   })
 })
 
+app.get("/search", (req, res) => {
+  const sql = "SELECT * from song where sname like ? or composer like ?"
+  const searchPattern = `%${req.query.sname}%`
+  db.query(sql, [searchPattern, searchPattern], (err, rows) => {
+    if (err) {
+      res.json({result: "error"})
+      return console.log(err)
+    }
+    res.json(rows)
+  })
+})
+
 app.listen(port, () => {
     console.log(`서버 실행됨 (port ${port})`)
   })

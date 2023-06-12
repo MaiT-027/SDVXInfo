@@ -14,10 +14,6 @@ import Button from '@mui/material/Button';
 import { Box, TextField } from '@mui/material';
 
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
 import { InsertDialog, DeleteDialog } from './popup';
 
@@ -25,11 +21,28 @@ import { InsertDialog, DeleteDialog } from './popup';
 const EXPRESS_URL = 'http://175.120.221.48:3010'
 
 function SongTable() {
-  const [level, setLevel] = React.useState("");
+  const [values, setValues] = useState({song_name: ""})
 
-  const handleChange = (event) => {
-   setLevel(event.target.value);
-  };
+  const searchBoxHandleChange = (event) => {
+    const {name, value} = event.target
+    setValues({...values, [name]: value})
+    console.log(values)
+  }
+
+  const searchBoxKeyDown = (event) => {
+    if (event.key === "Enter") {
+      search()
+    }
+  }
+
+  async function search() {
+    if (values.song_name === "") {
+      refresh()
+      return
+    }
+    const res = await axios.get(EXPRESS_URL + `/search?sname=${values.song_name}`)
+    setItems(res.data)
+  }
 
   const [items, setItems] = useState([])
   useEffect(() => {
@@ -55,24 +68,8 @@ function SongTable() {
           <RefreshIcon />
         </Fab>
       <Box sx={{position: "relative", float: "right", right: (theme) => theme.spacing(1)}}>
-        <FormControl sx={{ width: 80, right: (theme) => theme.spacing(4)}} size="small">
-          <InputLabel id="level-select-label" sx={{fontSize: "0.8vw"}}>레벨</InputLabel>
-          <Select
-            labelId="level-select-label"
-            id="level-select"
-            value={level}
-            label="level"
-            onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>선택</em>
-            </MenuItem>
-            <MenuItem value={19}>19</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-          </Select>
-        </FormControl>
-        <TextField id="song-name" variant="outlined" size='small' sx={{width: 180, right: (theme) => theme.spacing(2)}}/>
-        <Button variant="outlined" size="medium" sx={{width: 80, top: (theme) => theme.spacing(0.3)}}>Search</Button>
+        <TextField name="song_name" variant="outlined" size='small' sx={{width: 180, right: (theme) => theme.spacing(1.5)}} onChange={searchBoxHandleChange} onKeyDown={searchBoxKeyDown}/> {/* SearchBox */}
+        <Button variant="outlined" size="medium" sx={{width: 80, top: (theme) => theme.spacing(0.3)}} onClick={() => { search() }}>Search</Button> {/* SearchButton */}
       </Box>
         <TableContainer sx={{ maxHeight: 600}}>
           <Table stickyHeader aria-label="sticky table">
