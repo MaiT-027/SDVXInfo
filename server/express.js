@@ -73,6 +73,28 @@ app.post('/insert', (req, res) => {
     })
 })
 
+app.post('/modify', (req, res) => {
+  const sql = 'UPDATE song SET sname = ?, composer = ?, lvl1 = ?, lvl2 = ?, lvl3 = ?, lvl4 = ?, lvl4name = ? WHERE sname = ?'
+  const song = [
+    req.body.sname_new,
+    req.body.composer,
+    req.body.lvl1,
+    req.body.lvl2,
+    req.body.lvl3,
+    req.body.lvl4,
+    req.body.lvl4name,
+    req.body.sname_old
+  ]
+
+  db.query(sql, song, (err, rows) => {
+    if (err) {
+      res.json({result: "error"})
+      return console.log(err)
+    }
+    res.json({result: "success"})
+  })
+})
+
 app.post('/delete', (req, res) => {
   const sql = 'delete from song where sname = ?'
 

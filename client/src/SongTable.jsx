@@ -15,7 +15,7 @@ import { Box, TextField } from '@mui/material';
 
 import * as React from "react";
 
-import { InsertDialog, DeleteDialog } from './popup';
+import { InsertDialog, DeleteDialog, ModifyDialog } from './popup';
 
 //const EXPRESS_URL = 'http://localhost:3010'
 const EXPRESS_URL = 'http://175.120.221.48:3010'
@@ -91,6 +91,7 @@ function SongTable() {
         </TableContainer>
       </Paper>
       <InsertDialog></InsertDialog>
+      <ModifyDialog></ModifyDialog>
       <DeleteDialog></DeleteDialog>
     </>
   )
