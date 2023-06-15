@@ -314,3 +314,177 @@ export function DeleteDialog() {
       </div>
     );
   }
+
+export function AddUserDialog() {
+  const [open, setOpen] = useState(false);
+  const [values, setValues] = useState({username: "", volforce: ""})
+
+  async function insertUser() {
+    const res = await axios.post(EXPRESS_URL + '/adduser', values)
+    console.log(res.data)
+  }
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const HandleCloseOK = () => {
+    insertUser()
+    setOpen(false);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setValues({...values, [name]: value})
+  }
+
+  return (
+    <div>
+      <Button style={{position: "relative"}} variant="outlined" onClick={handleClickOpen}>
+        유저 추가
+      </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>추가</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            악곡의 정보를 입력하세요.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            name="username"
+            label="플레이어 이름"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            name="volforce"
+            label="볼포스"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>취소</Button>
+          <Button onClick={HandleCloseOK}>추가</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+
+export function AddScoreDialog() {
+  const [open, setOpen] = useState(false);
+  const [values, setValues] = useState({username: "", sname: "", lvl1: "", lvl2: "", lvl3: "", lvl4: ""})
+
+  async function insertScore() {
+    if (values.lvl4 === "") {
+        values.lvl4 = null
+        values.lvl4name = null
+    }
+    const res = await axios.post(EXPRESS_URL + '/addscore', values)
+    console.log(res.data)
+  }
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const HandleCloseOK = () => {
+    insertScore()
+    setOpen(false);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setValues({...values, [name]: value})
+  }
+
+  return (
+    <div>
+      <Button style={{position: "relative", left: 97, bottom: 36}} variant="outlined" onClick={handleClickOpen}>
+        스코어 추가
+      </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>추가</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            악곡의 정보를 입력하세요.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            name="username"
+            label="플레이어 이름"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            name="sname"
+            label="악곡 이름"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            name="lvl1"
+            label="NOV 점수"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            name="lvl2"
+            label="ADV 점수"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            name="lvl3"
+            label="EXH 점수"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            name="lvl4"
+            label="4번째 난이도 점수(없을 시 공백)"
+            type="name"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>취소</Button>
+          <Button onClick={HandleCloseOK}>추가</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
