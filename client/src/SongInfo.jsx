@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-import {useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -9,12 +9,14 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { Button } from '@mui/material';
 
 //const EXPRESS_URL = 'http://localhost:3010'
 const EXPRESS_URL = 'http://175.120.221.48:3010'
 
 function SongInfo() {
     const location = useLocation()
+    const navigate = useNavigate()
     const sname = location
         .pathname
         .replace('/song/', "")
@@ -27,8 +29,13 @@ function SongInfo() {
         }
         getSongInfo()
     }, [sname])
+    
+    const handleClickOpen = () => {
+        navigate("/")
+    }
 
     return (
+        <>
         <Paper
             sx={{
                 width: '100%',
@@ -52,7 +59,7 @@ function SongInfo() {
                     <TableBody>
                         {
                             items.map(
-                                (song, i) => <TableRow hover="hover" role="checkbox" key={i}>
+                                (song, i) => <TableRow hover role="checkbox" key={i}>
                                     <TableCell align="center">
                                         <img src={process.env.PUBLIC_URL + `/images/${song.id}.png`} alt='자켓'></img>
                                     </TableCell>
@@ -81,7 +88,7 @@ function SongInfo() {
                     <TableBody>
                         {
                             items.map(
-                                (song, i) => <TableRow hover="hover" role="checkbox" key={i}>
+                                (song, i) => <TableRow hover role="checkbox" key={i}>
                                     <TableCell align="center">{song.lvl1}</TableCell>
                                     <TableCell align="center">{song.lvl2}</TableCell>
                                     <TableCell align="center">{song.lvl3}</TableCell>
@@ -97,6 +104,14 @@ function SongInfo() {
                 </Table>
             </TableContainer>
         </Paper>
+        <Button
+        style={{
+            position: "relative",
+        }}
+        variant="outlined"
+        onClick={handleClickOpen}
+        >홈으로 가기</Button>
+        </>
     )
 }
 

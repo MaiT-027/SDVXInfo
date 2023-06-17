@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -9,11 +10,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {AddUserDialog, AddScoreDialog} from './popup'
+import { Button } from '@mui/material';
 
 const EXPRESS_URL = 'http://175.120.221.48:3010'
 
 function ScoreInfo() {
     const [items, setItems] = useState([])
+    const navigate = useNavigate()
     useEffect(() => {
         async function getScoreInfo() {
             const res = await axios.get(EXPRESS_URL + `/getscore`)
@@ -22,8 +25,13 @@ function ScoreInfo() {
         }
         getScoreInfo()
     }, [])
+
+    const handleClickOpen = () => {
+        navigate("/")
+    }
+
     return (
-        <> < AddUserDialog > </AddUserDialog> < AddScoreDialog > </AddScoreDialog> < Paper sx = {{
+        <>< Paper sx = {{
             width: '100%',
             overflow: 'hidden'
         }} > <TableContainer sx={{
@@ -37,21 +45,23 @@ function ScoreInfo() {
                 </TableHead>
             </Table>
             <Table>
-                <TableHead>
-                    <TableCell align="center">곡 이름</TableCell>
-                    <TableCell align="center">작곡가</TableCell>
-                    <TableCell align="center">NOV</TableCell>
-                    <TableCell align="center">ADV</TableCell>
-                    <TableCell align="center">EXH</TableCell>
-                    <TableCell align="center">4번째 난이도</TableCell>
-                    <TableCell align="center">4번째 난이도 이름</TableCell>
-                    <TableCell align="center">유저 이름</TableCell>
-                    <TableCell align="center">볼포스</TableCell>
-                </TableHead>
+                <TableBody>
+                    <TableRow>
+                        <TableCell align="center">곡 이름</TableCell>
+                        <TableCell align="center">작곡가</TableCell>
+                        <TableCell align="center">NOV</TableCell>
+                        <TableCell align="center">ADV</TableCell>
+                        <TableCell align="center">EXH</TableCell>
+                        <TableCell align="center">4번째 난이도</TableCell>
+                        <TableCell align="center">4번째 난이도 이름</TableCell>
+                        <TableCell align="center">유저 이름</TableCell>
+                        <TableCell align="center">볼포스</TableCell>
+                    </TableRow>
+                </TableBody>
                 <TableBody>
                     {
                         items.map(
-                            (score, i) => <TableRow role="checkbox" key={i}>
+                            (score, i) => <TableRow hover role="checkbox" key={i}>
                                 <TableCell align="center">{score.sname}</TableCell>
                                 <TableCell align="center">{score.composer}</TableCell>
                                 {
@@ -87,7 +97,17 @@ function ScoreInfo() {
                     </TableBody>
             </Table>
         </TableContainer> 
-        </Paper> </>
+        </Paper> 
+        < AddUserDialog > </AddUserDialog> < AddScoreDialog > </AddScoreDialog> <Button
+        style={{
+            position: "relative",
+            left: 208,
+            bottom: 72
+        }}
+        variant="outlined"
+        onClick={handleClickOpen}
+        >홈으로 가기</Button>
+        </>
     )
 }
 

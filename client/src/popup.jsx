@@ -361,7 +361,7 @@ export function DeleteDialog() {
             <Button
                 style={{
                     position: "relative",
-                    left: 133,
+                    left: 134,
                     bottom: 72
                 }}
                 variant="outlined"

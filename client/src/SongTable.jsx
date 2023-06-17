@@ -81,7 +81,7 @@ function SongTable() {
                 size='small'
                 sx={{
                     width: 180,
-                    right: (theme) => theme.spacing(1.5)
+                    right: (theme) => theme.spacing(0.5)
                 }}
                 onChange={searchBoxHandleChange}
                 onKeyDown={searchBoxKeyDown}/> {/* SearchBox */}
@@ -141,7 +141,7 @@ function SongTable() {
             size="medium"
             style={{
                 position: "relative",
-                left: 198,
+                left: 201,
                 bottom: 108
             }}>유저 스코어 보기</Button>
     </Link>
