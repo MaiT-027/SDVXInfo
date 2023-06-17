@@ -45,26 +45,42 @@ function ScoreInfo() {
                     <TableCell align="center">EXH</TableCell>
                     <TableCell align="center">4번째 난이도</TableCell>
                     <TableCell align="center">4번째 난이도 이름</TableCell>
+                    <TableCell align="center">유저 이름</TableCell>
+                    <TableCell align="center">볼포스</TableCell>
                 </TableHead>
                 <TableBody>
                     {
                         items.map(
-                            (song, i) => <TableRow role="checkbox" key={i}>
-                                <TableCell align="center">{song.sname}</TableCell>
-                                <TableCell align="center">{song.composer}</TableCell>
-                                <TableCell align="center">{song.lvl1_score}</TableCell>
-                                <TableCell align="center">{song.lvl2_score}</TableCell>
-                                <TableCell align="center">{song.lvl3_score}</TableCell>
+                            (score, i) => <TableRow role="checkbox" key={i}>
+                                <TableCell align="center">{score.sname}</TableCell>
+                                <TableCell align="center">{score.composer}</TableCell>
                                 {
-                                    song.lvl4_score == null
-                                    ? <TableCell align="center"/>
-                                    : <TableCell align="center">{song.lvl4_score}</TableCell >
+                                    score.lvl1_score == null
+                                    ? <TableCell align="center">X</TableCell>
+                                    : <TableCell align="center">{score.lvl1_score}</TableCell >
                                 }
                                 {
-                                    song.lvl4_score == null
-                                    ? <TableCell align="center"/>
-                                    : <TableCell align="center">{song.lvl4name}</TableCell >
+                                    score.lvl2_score == null
+                                    ? <TableCell align="center">X</TableCell>
+                                    : <TableCell align="center">{score.lvl2_score}</TableCell >
                                 }
+                                {
+                                    score.lvl3_score == null
+                                    ? <TableCell align="center">X</TableCell>
+                                    : <TableCell align="center">{score.lvl3_score}</TableCell >
+                                }
+                                {
+                                    score.lvl4_score == null
+                                    ? <TableCell align="center">X</TableCell>
+                                    : <TableCell align="center">{score.lvl4_score}</TableCell >
+                                }
+                                {
+                                    score.lvl4_score == null
+                                    ? <TableCell align="center"/>
+                                    : <TableCell align="center">{score.lvl4name}</TableCell >
+                                }
+                                <TableCell align='center'>{score.username}</TableCell>
+                                <TableCell align='center'>{score.volforce}</TableCell>
                             </TableRow>
                         )
                     }

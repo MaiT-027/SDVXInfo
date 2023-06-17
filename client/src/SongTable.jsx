@@ -100,7 +100,7 @@ function SongTable() {
         <TableContainer sx={{
                 maxHeight: 600
             }}>
-            <Table stickyHeader="stickyHeader" aria-label="sticky table">
+            <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                     <TableRow>
                         <TableCell
@@ -115,7 +115,7 @@ function SongTable() {
                 <TableBody>
                     {
                         items.map(
-                            (song, i) => <TableRow hover="hover" role="checkbox" key={i}>
+                            (song, i) => <TableRow hover role="checkbox" key={i}>
                                 <TableCell align="center">
                                     <a href={`/song/${song.sname}`}>
                                         <img src={process.env.PUBLIC_URL + `/images/${song.id}.png`} alt='자켓'></img>
