@@ -29,7 +29,6 @@ function SongTable() {
             ...values,
             [name]: value
         })
-        console.log(values)
     }
     const searchBoxKeyDown = (event) => {
         if (event.key === "Enter") {

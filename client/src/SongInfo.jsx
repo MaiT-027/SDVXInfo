@@ -44,7 +44,7 @@ function SongInfo() {
             <TableContainer sx={{
                     maxHeight: 545
                 }}>
-                <Table stickyHeader="stickyHeader" aria-label="sticky table">
+                <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell
@@ -70,7 +70,7 @@ function SongInfo() {
                         }
                     </TableBody>
                 </Table>
-                <Table stickyHeader="stickyHeader" aria-label="sticky table">
+                <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">NOV</TableCell>
