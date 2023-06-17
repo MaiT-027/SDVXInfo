@@ -58,7 +58,6 @@ export function InsertDialog() {
             ...values,
             [name]: value
         })
-        console.log(values)
     }
 
     return (
