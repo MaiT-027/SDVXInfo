@@ -34,6 +34,7 @@ export function InsertDialog() {
         }
         const res = await axios.post(EXPRESS_URL + '/insert', values)
         console.log(res.data)
+        alert("추가 완료되었습니다.")
     }
     else {
       alert("관리자 패스워드가 잘못되었습니다.")
@@ -168,16 +169,27 @@ export function ModifyDialog() {
         lvl2: "",
         lvl3: "",
         lvl4: "",
-        lvl4name: ""
+        lvl4name: "",
+        password: ""
     })
 
     async function modifySong() {
-        if (values.lvl4 === "") {
-            values.lvl4 = null
-            values.lvl4name = null
+        const password = await axios.get(
+            EXPRESS_URL + `/auth?password=${values.password}`
+        )
+        if (password.data.length !== 0) {
+            if (values.lvl4 === "") {
+                values.lvl4 = null
+                values.lvl4name = null
+            }
+            const res = await axios.post(EXPRESS_URL + '/modify', values)
+            console.log(res.data)
+            alert("변경 완료되었습니다.")
         }
-        const res = await axios.post(EXPRESS_URL + '/modify', values)
-        console.log(res.data)
+        else {
+          alert("관리자 패스워드가 잘못되었습니다.")
+          setOpen(true);
+        }
     }
 
     const handleClickOpen = () => {
@@ -296,11 +308,12 @@ export function ModifyDialog() {
                         type="password"
                         fullWidth
                         size="medium"
-                        variant="standard"/>
+                        variant="standard"
+                        onChange={handleChange}/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>취소</Button>
-                    <Button onClick={HandleCloseOK}>추가</Button>
+                    <Button onClick={HandleCloseOK}>변경</Button>
                 </DialogActions>
             </Dialog>
         </div>
@@ -309,12 +322,22 @@ export function ModifyDialog() {
 
 export function DeleteDialog() {
     const [open, setOpen] = useState(false);
-    const [values, setValues] = useState({sname: ""})
+    const [values, setValues] = useState({sname: "", password: ""})
 
     async function deleteSong() {
+    const password = await axios.get(
+        EXPRESS_URL + `/auth?password=${values.password}`
+    )
+    if (password.data.length !== 0) {
         const res = await axios.post(EXPRESS_URL + '/delete', values)
         console.log(res.data)
+        alert("삭제 완료되었습니다.")
     }
+    else {
+      alert("관리자 패스워드가 잘못되었습니다.")
+      setOpen(true);
+    }
+}
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -369,7 +392,8 @@ export function DeleteDialog() {
                         type="password"
                         fullWidth
                         size="medium"
-                        variant="standard"/>
+                        variant="standard"
+                        onChange={handleChange}/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>취소</Button>
