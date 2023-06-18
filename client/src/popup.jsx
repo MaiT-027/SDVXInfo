@@ -418,6 +418,7 @@ export function AddUserDialog() {
     const HandleCloseOK = () => {
         insertUser()
         setOpen(false);
+        alert("유저 정보가 추가되었습니다.")
     };
     const handleClose = () => {
         setOpen(false);
@@ -444,7 +445,7 @@ export function AddUserDialog() {
                 <DialogTitle>추가</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        악곡의 정보를 입력하세요.
+                        유저 정보를 입력하세요.
                     </DialogContentText>
                     <TextField
                         autoFocus
@@ -500,6 +501,7 @@ export function AddScoreDialog() {
     const HandleCloseOK = () => {
         insertScore()
         setOpen(false);
+        alert("스코어 정보가 추가되었습니다.")
     };
     const handleClose = () => {
         setOpen(false);
@@ -528,7 +530,7 @@ export function AddScoreDialog() {
                 <DialogTitle>추가</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        악곡의 정보를 입력하세요.
+                        스코어 정보를 입력하세요.
                     </DialogContentText>
                     <TextField
                         autoFocus
