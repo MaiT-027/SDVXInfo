@@ -18,7 +18,7 @@ function SongInfo() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function getSongInfo() {
-      const res = await axios.get(`/api/song/${sname}`);
+      const res = await axios.get(`/song/${sname}`);
       console.log(res.data);
       setItems(res.data);
     }

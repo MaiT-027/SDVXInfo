@@ -38,11 +38,11 @@ function SongTable() {
       refresh();
       return;
     }
-    const res = await axios.get(`/api/search?sname=${values.song_name}`);
+    const res = await axios.get(`/search?sname=${values.song_name}`);
     setItems(res.data);
   }
   async function refresh() {
-    const res = await axios.get("/api/song");
+    const res = await axios.get("/song");
     console.log(res.data);
     setItems(res.data);
   }
