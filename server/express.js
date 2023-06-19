@@ -5,11 +5,11 @@ import cors from "cors";
 import db from "./auth.js";
 
 const app = express();
-
 const port = 3010;
 
 db.connect();
 app.use(bodyParser.json());
+app.use(cors({ origin: "http://localhost:3000" }));
 
 app.get("/", (req, res) => {
   res.json({ result: "success" });
@@ -135,12 +135,11 @@ app.post("/adduser", (req, res) => {
 
 app.post("/addscore", (req, res) => {
   const sql =
-    "INSERT INTO scores (player_id, song_id, lvl1_score, lvl2_score, lvl3_score, lv" +
-    "l4_score) \
+    "INSERT INTO scores (player_id, song_id, lvl1_score, lvl2_score, lvl3_score, lvl4_score) \
   SELECT p.id, s.id, ?, ?, ?, ? \
   FROM players p \
-  JOIN songs " +
-    "s ON s.sname = ? \
+  JOIN songs s \
+  ON s.sname = ? \
   WHERE p.username = ?;";
   const information = [
     req.body.lvl1,
@@ -162,11 +161,9 @@ app.post("/addscore", (req, res) => {
 app.get("/getscore", (req, res) => {
   const sql =
     "select songs.id, sname, composer, lvl4name, \
-  lvl1_score, lvl2_score, lvl3_s" +
-    "core, lvl4_score, username, volforce from songs \
-  left join scores on scores" +
-    ".song_id = songs.id left join players on scores.player_id = players.id where u" +
-    "sername is not null";
+  lvl1_score, lvl2_score, lvl3_score, lvl4_score, username, volforce from songs \
+  left join scores on scores.song_id = songs.id left join players on scores.player_id = players.id \
+  where username is not null";
   db.query(sql, (err, rows) => {
     if (err) {
       res.json({ result: "error" });
