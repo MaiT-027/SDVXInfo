@@ -18,9 +18,6 @@ import * as React from "react";
 
 import {InsertDialog, DeleteDialog, ModifyDialog} from './popup';
 
-//const EXPRESS_URL = 'http://localhost:3010'
-const EXPRESS_URL = 'http://175.120.221.48:3010'
-
 function SongTable() {
     const [values, setValues] = useState({song_name: ""})
     const searchBoxHandleChange = (event) => {
@@ -41,11 +38,11 @@ function SongTable() {
             refresh()
             return
         }
-        const res = await axios.get(EXPRESS_URL + `/search?sname=${values.song_name}`)
+        const res = await axios.get(`/api/search?sname=${values.song_name}`)
         setItems(res.data)
     }
     async function refresh() {
-        const res = await axios.get(EXPRESS_URL + '/song')
+        const res = await axios.get('/api/song')
         console.log(res.data)
         setItems(res.data)
     }

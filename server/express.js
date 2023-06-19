@@ -10,7 +10,6 @@ const port = 3010
 
 db.connect()
 app.use(bodyParser.json())
-app.use(cors())
 
 app.get('/', (req, res) => {
     res.json({result: "success"})

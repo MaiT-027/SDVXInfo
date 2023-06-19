@@ -1,8 +1,8 @@
-import './App.css';
-import SongTable from './SongTable';
+import './App.client.css';
+import SongTable from './SongTable.server';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SongInfo from './SongInfo';
-import ScoreInfo from './ScoreInfo';
+import SongInfo from './SongInfo.server';
+import ScoreInfo from './ScoreInfo.server';
 
 const App = () => {
   return (

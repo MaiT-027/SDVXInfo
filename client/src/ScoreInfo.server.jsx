@@ -12,14 +12,12 @@ import TableRow from '@mui/material/TableRow';
 import {AddUserDialog, AddScoreDialog} from './popup'
 import { Button } from '@mui/material';
 
-const EXPRESS_URL = 'http://175.120.221.48:3010'
-
 function ScoreInfo() {
     const [items, setItems] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
         async function getScoreInfo() {
-            const res = await axios.get(EXPRESS_URL + `/getscore`)
+            const res = await axios.get(`/api/getscore`)
             console.log(res.data)
             setItems(res.data)
         }

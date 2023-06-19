@@ -10,7 +10,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const EXPRESS_URL = 'http://175.120.221.48:3010'
+const EXPRESS_URL = "http://localhost:3010"
+//const EXPRESS_URL = 'http://175.120.221.48:3010'
 
 export function InsertDialog() {
     const [open, setOpen] = useState(false);
