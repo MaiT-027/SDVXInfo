@@ -8,7 +8,7 @@ const port = 3010;
 
 db.connect();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 
 app.get("/", (req, res) => {
   res.json({ result: "success" });
