@@ -36,7 +36,6 @@ function ScoreInfo() {
           overflow: "hidden",
         }}
       >
-        {" "}
         <TableContainer
           sx={{
             maxHeight: 545,
@@ -101,7 +100,7 @@ function ScoreInfo() {
           </Table>
         </TableContainer>
       </Paper>
-      <AddUserDialog> </AddUserDialog> <AddScoreDialog> </AddScoreDialog>{" "}
+      <AddUserDialog> </AddUserDialog> <AddScoreDialog> </AddScoreDialog>
       <Button
         style={{
           position: "relative",

@@ -54,9 +54,7 @@ function SongTable() {
 
   return (
     <>
-      {" "}
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        {" "}
         <Fab
           color="primary"
           sx={{
@@ -87,7 +85,7 @@ function SongTable() {
             }}
             onChange={searchBoxHandleChange}
             onKeyDown={searchBoxKeyDown}
-          />{" "}
+          />
           {/* SearchBox */}
           <Button
             variant="outlined"
