@@ -13,7 +13,7 @@ app.use(
   "/api",
   createProxyMiddleware({ target: "http://localhost:3000", changeOrigin: true })
 );
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.get("/", (req, res) => {
   res.json({ result: "success" });
