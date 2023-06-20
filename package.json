@@ -17,7 +17,7 @@
   "author": "MaiT-027 <mytmicekorea@naver.com>",
   "license": "ISC",
   "description": "Sound Voltex Wiki",
-  "proxy": "http://localhost:3010",
   "repository": "https://github.com/MaiT-027/SDVXInfo.git",
+  "proxy": "http://localhost:3010",
   "packageManager": "yarn@1.22.19"
 }

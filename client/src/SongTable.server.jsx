@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 
 import { InsertDialog, DeleteDialog, ModifyDialog } from "./popup";
 
+const EXPRESS_URL = "http://localhost:3010";
+
 function SongTable() {
   const [values, setValues] = useState({ song_name: "" });
   const searchBoxHandleChange = (event) => {
@@ -40,7 +42,7 @@ function SongTable() {
     setItems(res.data);
   }
   async function refresh() {
-    const res = await axios.get("/api/song");
+    const res = await axios.get(EXPRESS_URL + "/song");
     console.log(res.data);
     setItems(res.data);
   }
