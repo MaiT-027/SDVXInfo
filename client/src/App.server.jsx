@@ -1,4 +1,4 @@
-import "./App.client.css";
+import "./App.server.css";
 import SongTable from "./SongTable.server";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SongInfo from "./SongInfo.server";
