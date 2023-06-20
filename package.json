@@ -19,5 +19,6 @@
   "license": "ISC",
   "description": "Sound Voltex Wiki",
   "proxy": "http://localhost:3010",
-  "repository": "https://github.com/MaiT-027/SDVXInfo.git"
+  "repository": "https://github.com/MaiT-027/SDVXInfo.git",
+  "packageManager": "yarn@1.22.19"
 }
