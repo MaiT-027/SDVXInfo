@@ -11,7 +11,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server/express.js"
+    "start": "nodemon server/express.js",
+    "dev": "nodemon server/express-dev.js"
   },
   "keywords": [],
   "author": "MaiT-027 <mytmicekorea@naver.com>",

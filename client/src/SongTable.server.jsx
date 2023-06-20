@@ -40,7 +40,7 @@ function SongTable() {
     setItems(res.data);
   }
   async function refresh() {
-    const res = await axios.get("/song");
+    const res = await axios.get("/getsong");
     console.log(res.data);
     setItems(res.data);
   }

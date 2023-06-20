@@ -4,12 +4,8 @@ import cors from "cors";
 import db from "./auth.js";
 import path from "path";
 
-import { fileURLToPath } from "url"; // 👈 추가
-
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
-
 const app = express();
-const port = 3000;
+const port = 3010;
 
 db.connect();
 app.use(bodyParser.json());
@@ -20,8 +16,6 @@ app.use(
     allowMethods: "*",
   })
 );
-
-app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("/getsong", (req, res) => {
   const sql = "SELECT * from songs";
@@ -193,10 +187,6 @@ app.get("/auth", (req, res) => {
     }
     res.json(rows);
   });
-});
-
-app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 app.listen(port, () => {
