@@ -3,7 +3,6 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "http-proxy-middleware": "^2.0.6",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.22"
   },
@@ -19,6 +18,5 @@
   "license": "ISC",
   "description": "Sound Voltex Wiki",
   "repository": "https://github.com/MaiT-027/SDVXInfo.git",
-  "packageManager": "yarn@1.22.19",
-  "proxy": "http://localhost:3010"
+  "packageManager": "yarn@1.22.19"
 }

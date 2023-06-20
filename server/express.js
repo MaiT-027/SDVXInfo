@@ -2,17 +2,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import db from "./auth.js";
-import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 const port = 3010;
 
 db.connect();
 app.use(bodyParser.json());
-app.use(
-  "/api",
-  createProxyMiddleware({ target: "http://localhost:3000", changeOrigin: true })
-);
 app.use(
   cors({
     origin: "http://localhost:3000",
