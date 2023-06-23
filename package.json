@@ -12,7 +12,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server/express.js",
-    "dev": "nodemon server/express-dev.js"
+    "dev": "concurrently \"nodemon server/express-dev.js\" \"cd client && yarn start"
   },
   "keywords": [],
   "author": "MaiT-027 <mytmicekorea@naver.com>",
