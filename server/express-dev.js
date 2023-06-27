@@ -16,6 +16,10 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  res.json({ result: "success" });
+});
+
 app.get("/getsong", (req, res) => {
   const sql = "SELECT * from songs";
 
