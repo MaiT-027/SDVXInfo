@@ -12,18 +12,20 @@ import Fab from "@mui/material/Fab";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Button from "@mui/material/Button";
 import { Box, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { InsertDialog, DeleteDialog, ModifyDialog } from "./popup";
 
 function SongTable() {
   const [values, setValues] = useState({ song_name: "" });
+  const navigate = useNavigate();
   const searchBoxHandleChange = (event) => {
     const { name, value } = event.target;
     setValues({
       ...values,
       [name]: value,
     });
+    console.log(values);
   };
   const searchBoxKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -37,12 +39,18 @@ function SongTable() {
       return;
     }
     const res = await axios.get(`/search?sname=${values.song_name}`);
+    console.log(res.data);
     setItems(res.data);
   }
+
   async function refresh() {
     const res = await axios.get("/getsong");
     console.log(res.data);
     setItems(res.data);
+  }
+
+  function navigateToScore() {
+    navigate("/score");
   }
 
   const [items, setItems] = useState([]);
@@ -144,19 +152,18 @@ function SongTable() {
       <InsertDialog></InsertDialog>
       <ModifyDialog></ModifyDialog>
       <DeleteDialog></DeleteDialog>
-      <Link to="/score">
-        <Button
-          variant="outlined"
-          size="medium"
-          style={{
-            position: "relative",
-            left: 201,
-            bottom: 108,
-          }}
-        >
-          유저 스코어 보기
-        </Button>
-      </Link>
+      <Button
+        variant="outlined"
+        size="medium"
+        style={{
+          position: "relative",
+          left: 201,
+          bottom: 108,
+        }}
+        onClick={navigateToScore}
+      >
+        유저 스코어 보기
+      </Button>
     </>
   );
 }
