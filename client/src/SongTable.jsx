@@ -25,7 +25,6 @@ function SongTable() {
       ...values,
       [name]: value,
     });
-    console.log(values);
   };
   const searchBoxKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -38,13 +37,13 @@ function SongTable() {
       refresh();
       return;
     }
-    const res = await axios.get(`/search?sname=${values.song_name}`);
+    const res = await axios.get(`/api/search?sname=${values.song_name}`);
     console.log(res.data);
     setItems(res.data);
   }
 
   async function refresh() {
-    const res = await axios.get("/getsong");
+    const res = await axios.get("/api/getsong");
     console.log(res.data);
     setItems(res.data);
   }
@@ -133,10 +132,7 @@ function SongTable() {
                 <TableRow hover role="checkbox" key={i}>
                   <TableCell align="center">
                     <a href={`/song/${song.sname}`}>
-                      <img
-                        src={process.env.PUBLIC_URL + `/images/${song.id}.png`}
-                        alt="자켓"
-                      ></img>
+                      <img src={`/images/${song.id}.png`} alt="자켓"></img>
                     </a>
                   </TableCell>
                   <TableCell align="center">

@@ -18,7 +18,7 @@ function SongInfo() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function getSongInfo() {
-      const res = await axios.get(`/getsong/${sname}`);
+      const res = await axios.get(`/api/getsong/${sname}`);
       console.log(res.data);
       setItems(res.data);
     }
@@ -61,10 +61,7 @@ function SongInfo() {
               {items.map((song, i) => (
                 <TableRow hover role="checkbox" key={i}>
                   <TableCell align="center">
-                    <img
-                      src={process.env.PUBLIC_URL + `/images/${song.id}.png`}
-                      alt="자켓"
-                    ></img>
+                    <img src={`/images/${song.id}.png`} alt="자켓"></img>
                   </TableCell>
                   <TableCell align="center">{song.sname}</TableCell>
                   <TableCell align="center">{song.composer}</TableCell>

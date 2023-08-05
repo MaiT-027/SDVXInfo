@@ -17,7 +17,7 @@ function ScoreInfo() {
   const navigate = useNavigate();
   useEffect(() => {
     async function getScoreInfo() {
-      const res = await axios.get(`/getscore`);
+      const res = await axios.get(`/api/getscore`);
       console.log(res.data);
       setItems(res.data);
     }

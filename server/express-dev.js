@@ -11,16 +11,14 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: "http://localhost:3000",
-    allowedHeaders: "*",
-    allowMethods: "*",
   })
 );
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.json({ result: "success" });
 });
 
-app.get("/getsong", (req, res) => {
+app.get("/getsong", (_req, res) => {
   const sql = "SELECT * from songs";
 
   db.query(sql, (err, rows) => {
@@ -93,7 +91,7 @@ app.post("/modify", (req, res) => {
     req.body.sname_old,
   ];
 
-  db.query(sql, song, (err, rows) => {
+  db.query(sql, song, (err, _rows) => {
     if (err) {
       res.json({ result: "error" });
       return console.log(err);
@@ -155,7 +153,7 @@ app.post("/addscore", (req, res) => {
     req.body.sname,
     req.body.username,
   ];
-  db.query(sql, information, (err, rows) => {
+  db.query(sql, information, (err, _rows) => {
     if (err) {
       res.json({ result: "error" });
       return console.log(err);
