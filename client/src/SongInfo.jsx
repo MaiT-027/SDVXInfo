@@ -11,6 +11,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button } from "@mui/material";
 
+const EXPRESS_URL = "http://1.243.127.37:3010";
+
 function SongInfo() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ function SongInfo() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function getSongInfo() {
-      const res = await axios.get(`/api/getsong/${sname}`);
+      const res = await axios.get(EXPRESS_URL + `/getsong/${sname}`);
       console.log(res.data);
       setItems(res.data);
     }

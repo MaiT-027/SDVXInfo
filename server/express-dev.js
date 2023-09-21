@@ -6,11 +6,19 @@ import db from "./auth.js";
 const app = express();
 const port = 3010;
 
+const allowedOrigins = ["http://1.243.127.37:3000"];
+
 db.connect();
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) != -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not Allowed by CORS"));
+      }
+    },
   })
 );
 

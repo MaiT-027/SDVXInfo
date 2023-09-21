@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 
 import { InsertDialog, DeleteDialog, ModifyDialog } from "./popup";
 
+const EXPRESS_URL = "http://1.243.127.37:3010";
+
 function SongTable() {
   const [values, setValues] = useState({ song_name: "" });
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ function SongTable() {
       [name]: value,
     });
   };
+
   const searchBoxKeyDown = (event) => {
     if (event.key === "Enter") {
       search();
@@ -37,13 +40,15 @@ function SongTable() {
       refresh();
       return;
     }
-    const res = await axios.get(`/api/search?sname=${values.song_name}`);
+    const res = await axios.get(
+      EXPRESS_URL + `/search?sname=${values.song_name}`
+    );
     console.log(res.data);
     setItems(res.data);
   }
 
   async function refresh() {
-    const res = await axios.get("/api/getsong");
+    const res = await axios.get(EXPRESS_URL + "/getsong");
     console.log(res.data);
     setItems(res.data);
   }

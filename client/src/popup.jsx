@@ -9,6 +9,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+const EXPRESS_URL = "http://1.243.127.37:3010";
+
 export function InsertDialog() {
   const [open, setOpen] = useState(false);
   const [values, setValues] = useState({
@@ -23,13 +25,15 @@ export function InsertDialog() {
   });
 
   async function insertSong() {
-    const password = await axios.get(`/api/auth?password=${values.password}`);
+    const password = await axios.get(
+      EXPRESS_URL + `/auth?password=${values.password}`
+    );
     if (password.data.length !== 0) {
       if (values.lvl4 === "") {
         values.lvl4 = null;
         values.lvl4name = null;
       }
-      const res = await axios.post("/api/insert", values);
+      const res = await axios.post(EXPRESS_URL + "/insert", values);
       console.log(res.data);
       alert("추가 완료되었습니다.");
     } else {
@@ -176,13 +180,15 @@ export function ModifyDialog() {
   });
 
   async function modifySong() {
-    const password = await axios.get(`/api/auth?password=${values.password}`);
+    const password = await axios.get(
+      EXPRESS_URL + `/auth?password=${values.password}`
+    );
     if (password.data.length !== 0) {
       if (values.lvl4 === "") {
         values.lvl4 = null;
         values.lvl4name = null;
       }
-      const res = await axios.post("/api/modify", values);
+      const res = await axios.post(EXPRESS_URL + "/modify", values);
       console.log(res.data);
       alert("변경 완료되었습니다.");
     } else {
@@ -332,9 +338,11 @@ export function DeleteDialog() {
   const [values, setValues] = useState({ sname: "", password: "" });
 
   async function deleteSong() {
-    const password = await axios.get(`/api/auth?password=${values.password}`);
+    const password = await axios.get(
+      EXPRESS_URL + `/auth?password=${values.password}`
+    );
     if (password.data.length !== 0) {
-      const res = await axios.post("/api/delete", values);
+      const res = await axios.post(EXPRESS_URL + "/delete", values);
       console.log(res.data);
       alert("삭제 완료되었습니다.");
     } else {
@@ -414,7 +422,7 @@ export function AddUserDialog() {
   const [values, setValues] = useState({ username: "", volforce: "" });
 
   async function insertUser() {
-    const res = await axios.post("/api/adduser", values);
+    const res = await axios.post(EXPRESS_URL + "/adduser", values);
     console.log(res.data);
   }
 
@@ -498,7 +506,7 @@ export function AddScoreDialog() {
       values.lvl4 = null;
       values.lvl4name = null;
     }
-    const res = await axios.post("/api/addscore", values);
+    const res = await axios.post(EXPRESS_URL + "/addscore", values);
     console.log(res.data);
   }
 
