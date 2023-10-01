@@ -2,13 +2,16 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import db from "./auth.js";
+import { fileURLToPath } from "url";
 
 const app = express();
 const port = 3010;
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const allowedOrigins = ["http://1.243.127.37:3000"];
 
 db.connect();
+app.use("/public", express.static(__dirname + "/client/public"));
 app.use(bodyParser.json());
 app.use(
   cors({
