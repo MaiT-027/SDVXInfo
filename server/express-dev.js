@@ -8,7 +8,7 @@ const app = express();
 const port = 3010;
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
-const allowedOrigins = ["http://1.243.127.37:3000"];
+const allowedOrigins = ["http://localhost:3000"];
 
 db.connect();
 app.use("/public", express.static(__dirname + "/client/public"));
@@ -19,7 +19,7 @@ app.use(
       if (allowedOrigins.indexOf(origin) != -1) {
         callback(null, true);
       } else {
-        callback(new Error("Not Allowed by CORS"));
+        callback("Not Allowed by CORS");
       }
     },
   })

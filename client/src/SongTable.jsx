@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 import { InsertDialog, DeleteDialog, ModifyDialog } from "./popup";
 
-const EXPRESS_URL = "http://1.243.127.37:3010";
+const EXPRESS_URL = import.meta.env.VITE_EXPRESS_URL;
 
 function SongTable() {
   const [values, setValues] = useState({ song_name: "" });

@@ -12,7 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import { AddUserDialog, AddScoreDialog } from "./popup";
 import { Button } from "@mui/material";
 
-const EXPRESS_URL = "http://1.243.127.37:3010";
+const EXPRESS_URL = import.meta.env.VITE_EXPRESS_URL;
 
 function ScoreInfo() {
   const [items, setItems] = useState([]);

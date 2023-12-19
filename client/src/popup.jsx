@@ -9,7 +9,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-const EXPRESS_URL = "http://1.243.127.37:3010";
+const EXPRESS_URL = import.meta.env.VITE_EXPRESS_URL;
 
 export function InsertDialog() {
   const [open, setOpen] = useState(false);

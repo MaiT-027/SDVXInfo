@@ -11,7 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button } from "@mui/material";
 
-const EXPRESS_URL = "http://1.243.127.37:3010";
+const EXPRESS_URL = import.meta.env.VITE_EXPRESS_URL;
 
 function SongInfo() {
   const location = useLocation();
